@@ -1,10 +1,10 @@
 import { app, BrowserWindow } from 'electron'
 
 function createWindow() {
-    const win = new BrowserWindow({
+    const window = new BrowserWindow({
         title: "vite-react-electron",
-        width: 800,
-        height: 800,
+        width: 700,
+        height: 130,
         // webPreferences: {
         //     preload: path.join(__dirname, 'preload.js')
         // },
@@ -12,13 +12,17 @@ function createWindow() {
         transparent: true,
         autoHideMenuBar: true,
         skipTaskbar: true,
-        frame: false
+        center: false,
+        frame: false,
+        focusable: false
     })
 
+    window.setIgnoreMouseEvents(true)
+
     if (process.env.VITE_DEV_SERVER_URL) {
-        win.loadURL(process.env.VITE_DEV_SERVER_URL)
+        window.loadURL(process.env.VITE_DEV_SERVER_URL)
     } else {
-        win.loadFile('dist/index.html');
+        window.loadFile('dist/index.html');
     }
 }
 
